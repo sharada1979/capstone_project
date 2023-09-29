@@ -3,15 +3,17 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 //import icons
 import { BsPlus, BsEyeFill } from "react-icons/bs";
-
+// import cart context
+import { CartContext } from "../contexts/CartContext";
 const Product = ({ product }) => {
-  console.log(product);
+  const { addToCart } = useContext(CartContext);
+  // console.log(product);
   // destructure products
   const { id, image, category, title, price } = product;
   return (
     <div>
       <div
-        className="border border-[#e4e4e4] h-[300px] mb-4
+        className="border border-[#E4E4E4] h-[300px] mb-4
     relative overflow-hidden group transition"
       >
         <div
@@ -24,19 +26,21 @@ const Product = ({ product }) => {
           justify-center items-center"
           >
             <img
-              className="max-h-[160px] group-hover:scale-110
-              transition duration-300"
+              // className="max-h-[160px] group-hover:scale-110
+              // transition duration-300"
+              width="100"
               src={image}
               alt=""
             />
           </div>
           {/* buttons */}
           <div
-            className="absolute top-6 -right-0 gruop-hover:right-5
+            className="absolute top-6 -right-0 group-hover:right-5
             p-2 flex flex-col items-center justify-center gap-y-2
             opacity-0 group-hover:opacity-100 transition-all duration-300"
           >
-            <button>
+            {/* Check to console to see if items are added it */}
+            <button onClick={() => addToCart(product, id)}>
               <div
                 className="flex justify-center items-center
               text-white w-12 h-12 bg-red-500"
@@ -46,7 +50,7 @@ const Product = ({ product }) => {
             </button>
             <Link
               to={`/product/${id}`}
-              className="w-12 h-12 bg-white flex justify-center 
+              className="w-12 h-12 bg-white flex justify-center
             items-center text-primary drop-shadow-xl"
             >
               <BsEyeFill />
@@ -55,7 +59,7 @@ const Product = ({ product }) => {
         </div>
       </div>
       {/* category & title & price */}
-      <div className="text-s capitalize text=gray-500 mb-1">
+      <div className="text-s capitalize font-light text-gray-440 mb-1">
         <div>{category}</div>
         <Link to={`/product/${id}`}>
           {/* in order to create a link to title create a route dynamicaly */}
@@ -66,5 +70,10 @@ const Product = ({ product }) => {
     </div>
   );
 };
-
 export default Product;
+
+
+
+
+
+

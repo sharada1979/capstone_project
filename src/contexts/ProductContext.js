@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-
 // create context
 export const ProductContext = createContext();
 // create Product provider passing as a children object and then as a
@@ -20,5 +19,4 @@ fetchProducts();
   // pass the value of {{products}}
   return <ProductContext.Provider value={{products}}>{children}</ProductContext.Provider>;
 };
-
 export default ProductProvider;
